@@ -10,24 +10,24 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrl: './infinite-scroll.component.css'
 })
 export class InfiniteScrollComponent implements OnInit {
-  
+
   private itemService = inject(ItemService)
   items: string[] = [];
   page = 1;
   pageSize = 10;
   isLoading = false;
   endOfData = false;
-  
+
   ngOnInit(): void {
     this.loadItems();
   }
 
   loadItems() {
-    if(this.endOfData || this.isLoading) return;
+    if (this.endOfData || this.isLoading) return;
     this.isLoading = true;
 
     this.itemService.getItems(this.page, this.pageSize).subscribe(data => {
-      if(data.length === 0){
+      if (data.length === 0) {
         this.endOfData = true;
       }
       else {
@@ -39,11 +39,11 @@ export class InfiniteScrollComponent implements OnInit {
   }
 
 
-  onScroll(event: any): void{
+  onScroll(event: any): void {
     const target = event.target;
     const atBottom = target.scrollTop + target.clientHeight >= target.scrollHeight - 50;
 
-    if(atBottom){
+    if (atBottom) {
       this.loadItems();
     }
   }
