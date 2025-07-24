@@ -40,3 +40,50 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# Build results
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+.history/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Others
+*.log
+*.vs/
+*.ncrunch*
+*.localhistory/
+*.DS_Store
+*.orig
+
+# Backup & cache files
+*.bak
+*.tmp
+*.swp
+
+# Publish results
+*.Publish.xml
+*.dbmdl

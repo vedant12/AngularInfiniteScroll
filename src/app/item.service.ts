@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ItemService {
 
-  private apiUrl = 'https://localhost:7056/api/Items';
+  private apiUrl = 'http://localhost:5075/items';
   private httpClient = inject(HttpClient);
 
   getItems(page: number,  pageSize: number): Observable<string[]> {
