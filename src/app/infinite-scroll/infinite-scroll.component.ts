@@ -1,31 +1,32 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ItemService } from '../item.service';
 import { NgFor, NgIf } from '@angular/common';
+import { NgxSpinnerService, NgxSpinnerComponent } from 'ngx-spinner';
 
 @Component({
   selector: 'app-infinite-scroll',
   standalone: true,
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, NgxSpinnerComponent],
   templateUrl: './infinite-scroll.component.html',
   styleUrl: './infinite-scroll.component.css'
 })
 export class InfiniteScrollComponent implements OnInit {
 
   private itemService = inject(ItemService)
+  private spinner = inject(NgxSpinnerService)
   items: string[] = [];
   page = 1;
   pageSize = 10;
   isLoading = false;
   endOfData = false;
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.loadItems();
   }
 
   loadItems() {
     if (this.endOfData || this.isLoading) return;
-    this.isLoading = true;
-
+    this.spinner.show();
     this.itemService.getItems(this.page, this.pageSize).subscribe(data => {
       if (data.length === 0) {
         this.endOfData = true;
@@ -34,7 +35,7 @@ export class InfiniteScrollComponent implements OnInit {
         this.items.push(...data);
         this.page++;
       }
-      this.isLoading = false;
+      this.spinner.hide();
     })
   }
 
