@@ -1,0 +1,8 @@
+<div class="container" (scroll)="onScroll($event)">
+  <div *ngFor="let item of items" class="item">
+    {{ item }}
+  </div>
+
+  <div *ngIf="isLoading" class="loading">Loading...</div>
+  <div *ngIf="endOfData" class="end">No more items</div>
+</div>
